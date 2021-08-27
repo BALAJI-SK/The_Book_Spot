@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">The Book Spot</string>
+    <string name="search">search</string>
+    <string name="cost">COST</string>
+    <string name="buy"><u>BUY |\ </u></string>
+    <string name="learn_more"><u>Learn More </u></string>
+    <string name="book_title">Book TITLE</string>
+</resources>
