@@ -23,7 +23,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
   TextView title,cost,author;
   RatingBar ratingBar;
   ImageView bookImage;
-
+double rating;
     }
 
     @NonNull
@@ -39,7 +39,6 @@ public class BookAdapter extends ArrayAdapter<Book> {
           viewHolderItem.bookImage=listView.findViewById(R.id.bookImage);
           viewHolderItem.cost =listView.findViewById(R.id.cost);
           viewHolderItem.author=listView.findViewById(R.id.author);
-
             viewHolderItem.ratingBar = listView.findViewById(R.id.rating_bar);
           listView.setTag(viewHolderItem);
         }
@@ -51,7 +50,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
         viewHolderItem.author.setText(currentBook.getAuthor());
         viewHolderItem.cost.setText(String.valueOf(currentBook.getBookCost()));
         viewHolderItem.bookImage.setImageResource(currentBook.getBookImage());
-
+        viewHolderItem.ratingBar.setRating(currentBook.getAvgRating());
 
 
 

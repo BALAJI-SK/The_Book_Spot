@@ -53,7 +53,7 @@ public class FetchData {
                     cost = listPrice.optString("amount");
 
                 }
-                double rating =volumeInfo.optDouble("averageRating");
+                float rating =(float)volumeInfo.optDouble("averageRating");
              bookList.add(new Book(title, 0,author, cost, infoLink, rating));
             }
 
