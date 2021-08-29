@@ -97,10 +97,6 @@ The intent of this project is to give you practice writing raw Java code using t
 
 
 
-#Code Readability
------------------
-
-
 Naming conventions
 ------------------
 
@@ -113,4 +109,7 @@ Format
 The code is properly formatted i.e. there are no unnecessary blank lines; there are no unused variables or methods; there is no commented out code.
 The code also has proper indentation when defining variables and methods.
 
+Image Retrieving 
+----------------
+Used Picasso API for retrieving it from URL and showing image.
 
