@@ -24,7 +24,6 @@ public class BookAdapter extends ArrayAdapter<Book> {
   TextView title,cost,author;
   RatingBar ratingBar;
   ImageView bookImage;
-      //  DownloadImageTask  imageAsync;
     }
 
     @NonNull
