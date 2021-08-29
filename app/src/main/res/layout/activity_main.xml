@@ -10,23 +10,45 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
-        <EditText
+        <SearchView
+            android:id="@+id/search_view_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:autofillHints="name"
             android:layout_weight="2.6"
-            android:hint="@string/book_title" />
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/search_view_hint"
+            tools:queryHint="@string/search_hint" />
+
         <Button
+            android:id="@+id/search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/search"/>
     </LinearLayout>
-    <ListView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/list_view"
-        />
+        android:layout_height="wrap_content">
+  <ProgressBar
+      android:id="@+id/showProgress"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/emptyData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_data_present"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

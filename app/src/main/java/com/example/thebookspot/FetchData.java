@@ -18,6 +18,7 @@ import java.util.List;
 
 public class FetchData {
     public static List<Book> fetchDataFromHTTP(String urls){
+        Log.i("On Loader", "fetchData()");
         URL url = create(urls);
         String jsonResponse="";
         try{
@@ -30,19 +31,23 @@ public class FetchData {
 
     private static List<Book> extractData(String jsonResponse) {
         List<Book> bookList = new ArrayList<>();
+
         try{
          if(jsonResponse==null)return null;
             JSONObject root = new JSONObject(jsonResponse);
             JSONArray items =root.optJSONArray(  "items");
-            for(int i=0;items !=null &&i<items.length();i++){
+            for(int i=0;items !=null &&i<items.length();i++){String author;
                 JSONObject currentBook =items.optJSONObject(i);
                  JSONObject volumeInfo= currentBook.optJSONObject("volumeInfo");
                 assert volumeInfo != null;
                 String title = volumeInfo.optString("title");
                 String infoLink = volumeInfo.optString("infoLink");
                 JSONArray authorsNames =volumeInfo.optJSONArray("authors");
-                assert authorsNames != null;
-                String author = authorsNames.optString(0);
+               if( authorsNames != null){
+                   author = authorsNames.optString(0);}
+               else {
+                   author="Name not Mentioned";
+               }
                 JSONObject salesInfo = currentBook.optJSONObject("saleInfo");
                 assert salesInfo != null;
                 String saleability= salesInfo.optString("saleability");
@@ -51,10 +56,17 @@ public class FetchData {
                   JSONObject listPrice= salesInfo.optJSONObject("listPrice");
                     assert listPrice != null;
                     cost = listPrice.optString("amount");
-
                 }
+                // For a given book, extract the JSONObject associated with the
+                // key called "imageLinks", which represents a list of all cover
+                // images in a different size
+                JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
+
+                // Extract String URL of specific cover
+                String coverImageUrl = imageLinks.getString("smallThumbnail");
+
                 float rating =(float)volumeInfo.optDouble("averageRating");
-             bookList.add(new Book(title, 0,author, cost, infoLink, rating));
+             bookList.add(new Book(title, coverImageUrl,author, cost, infoLink, rating));
             }
 
         } catch (JSONException e) {
@@ -71,8 +83,8 @@ public class FetchData {
         try {
             httpURLConnection= (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setReadTimeout(1000);
-            httpURLConnection.setConnectTimeout(2000);
+            httpURLConnection.setReadTimeout(1500);
+            httpURLConnection.setConnectTimeout(2500);
             httpURLConnection.connect();
             if(httpURLConnection.getResponseCode()==200){
                 inputStream=httpURLConnection.getInputStream();

@@ -5,4 +5,8 @@
     <string name="buy"><u>BUY |\ </u></string>
     <string name="learn_more"><u>Learn More </u></string>
     <string name="book_title">Book TITLE</string>
+    <string name="no_data_present">No Data Present</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="search_view_hint">Enter a book title</string>
+    <string name="search_hint">Enter a title</string>
 </resources>
