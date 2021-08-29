@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         checkConnection(cm);
 
 
-       mSearchViewField = (SearchView) findViewById(R.id.search_view_field);
+       mSearchViewField =  findViewById(R.id.search_view_field);
         mSearchViewField.onActionViewExpanded();
         mSearchViewField.setIconified(true);
         mSearchViewField.setQueryHint("Enter a book title");
@@ -65,6 +65,7 @@ mSearchButton.setOnClickListener(v ->{
         restartLoader();
         Log.i("Main Activity", "Search value: " + mSearchViewField.getQuery().toString());
     }else{
+       if(bookArrayAdapter!=null)
         bookArrayAdapter.clear();
         emptyTextView.setVisibility(View.VISIBLE);
         emptyTextView.setText(R.string.no_internet_connection);
@@ -76,7 +77,7 @@ mSearchButton.setOnClickListener(v ->{
             emptyTextView.setVisibility(View.VISIBLE);
             emptyTextView.setText(R.string.no_internet_connection);
         } else {
-            emptyTextView.setVisibility(View.GONE);
+            emptyTextView.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
             ListView bookListView = findViewById(R.id.list_view);
@@ -115,7 +116,7 @@ mSearchButton.setOnClickListener(v ->{
      * {@mUrlRequestGoogleBooks} helps  to  get new data from URL.
      */
     private void restartLoader() {
-        emptyTextView.setVisibility(View.GONE);
+        emptyTextView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         getSupportLoaderManager().restartLoader(LOADER_ID, null, MainActivity.this);
     }
@@ -129,7 +130,8 @@ mSearchButton.setOnClickListener(v ->{
         sb.append("https://www.googleapis.com/books/v1/volumes?q=").append(searchValue).append("&filter=paid-ebooks&maxResults=10");
         mUrlRequestGoogleBooks  = sb.toString();
         Log.i("Main Activity", mUrlRequestGoogleBooks);
-//mUrlRequestGoogleBooks="  https://www.googleapis.com/books/v1/volumes?q=android&maxResults=1";
+//Use this for testing
+// mUrlRequestGoogleBooks="  https://www.googleapis.com/books/v1/volumes?q=android&maxResults=1";
     }
 
     @NonNull
@@ -142,8 +144,9 @@ mSearchButton.setOnClickListener(v ->{
     @Override
     public void onLoadFinished(@NonNull Loader<List<Book>> loader, List<Book> data) {
         Log.i("On Loader", "onLoadFinished()");
+        if(bookArrayAdapter!=null)
         bookArrayAdapter.clear();
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.INVISIBLE);
         if (data != null && !data.isEmpty()) {
             bookArrayAdapter.addAll(data);
         } else {
@@ -157,6 +160,9 @@ mSearchButton.setOnClickListener(v ->{
         bookArrayAdapter.clear();
     }
 
+
+
+
     public void checkConnection(ConnectivityManager connectivityManager) {
         // Status of internet connection
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
@@ -164,7 +170,7 @@ mSearchButton.setOnClickListener(v ->{
                 activeNetwork.isConnectedOrConnecting()) {
             isConnected = true;
 
-            Log.i("Main Activity", "INTERNET connection status: " + String.valueOf(true) + ". It's time to play with LoaderManager :)");
+            Log.i("Main Activity", "INTERNET connection status: " + true + ". It's time to play with LoaderManager :)");
 
         } else {
             isConnected = false;

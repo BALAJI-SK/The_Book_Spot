@@ -26,8 +26,6 @@ public class BookAsyncTaskLoader extends AsyncTaskLoader<List<Book>> {
     @Override
     public List<Book> loadInBackground() {
         Log.i("On Loader", "LoadInBackground()");
-        if(url==null)
-        return null;
         return FetchData.fetchDataFromHTTP(url);
     }
 }
