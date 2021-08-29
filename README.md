@@ -1,7 +1,7 @@
 # The_Book_Spot
-Using Executors fected Data and displayed it on screen
 
-<img src="https://user-images.githubusercontent.com/60575418/131245611-02628d07-b157-4e2c-9c08-73030e7d579f.jpg" width="200" height="400"/>                        <img     src ="https://user-images.githubusercontent.com/60575418/131245614-c794cb7a-ca04-4701-a665-9f63e42aab43.png" width="200" height="400" />                         <img src="https://user-images.githubusercontent.com/60575418/131245615-545053ed-d96b-497f-b49f-8cd585877755.png" width="200" height="400"/>                       <img src="https://user-images.githubusercontent.com/60575418/131246122-54c6938b-1e6b-4135-babf-2a23bf377598.jpg" width="200" height="400"/> 
+
+<img src="https://user-images.githubusercontent.com/60575418/131245611-02628d07-b157-4e2c-9c08-73030e7d579f.jpg" width="190" height="400"/>                        <img     src ="https://user-images.githubusercontent.com/60575418/131245614-c794cb7a-ca04-4701-a665-9f63e42aab43.png" width="190" height="400" />                         <img src="https://user-images.githubusercontent.com/60575418/131245615-545053ed-d96b-497f-b49f-8cd585877755.png" width="190" height="400"/>                       <img src="https://user-images.githubusercontent.com/60575418/131246122-54c6938b-1e6b-4135-babf-2a23bf377598.jpg" width="190" height="400"/>             <img     src ="https://user-images.githubusercontent.com/60575418/131246207-54d88bb9-dec1-4c27-91e2-62300943a3d0.jpg" width="190" height="400" /> 
 
 
 Overall Layout
@@ -38,7 +38,7 @@ Rotation
 Upon device rotation:
 
 - The layout remains scrollable.
-- The app should save state and restore the list back to the previously scrolled position.
+- The app should save state and restore the list back to the previously scrolled position. Used AsyncTaskLoaders.
 - The UI should adjust properly so that all contents of each list item is still visible and not truncated.
 - The Search button should still remain visible on the screen after the device is rotated.
 
@@ -46,7 +46,7 @@ Upon device rotation:
 
 #Functionality
 -------------
-
+- Used To Display Books list with it cost and rating by readers with its the cover photo and author Name.
 
 Runtime Errors
 --------------
